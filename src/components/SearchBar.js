@@ -5,7 +5,7 @@ function SearchBar({ handleChange }) {
   return (
     <div className="search-box">
       <input
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
         type="text"
         className="search-bar"
         placeholder="Search..."

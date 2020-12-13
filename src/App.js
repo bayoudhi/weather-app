@@ -12,12 +12,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
+  const handleChange = (cityName) => {
     setLoading(true);
     setError(null);
     setWeather(null);
-    debounceSearch(e.target.value);
+    debounceSearch(cityName);
   };
 
   const debounceSearch = useRef(
