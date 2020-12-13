@@ -3,17 +3,17 @@ import ReactLoading from "react-loading";
 import { debounce } from "lodash";
 import { createWeatherAPI } from "openweatherapi-js-sdk";
 import Weather from "./components/Weather";
+import SearchBar from "./components/SearchBar";
 
 const api = createWeatherAPI("69cac80f1588f11748c177dbbdbb44dc");
 
 function App() {
   const [weather, setWeather] = useState();
-  const [cityName, setCityName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    setCityName(e.target.value);
+    console.log(e.target.value);
     setLoading(true);
     setError(null);
     setWeather(null);
@@ -25,7 +25,7 @@ function App() {
       if (cityName)
         api
           .getWeatherByCityName({
-            cityName: cityName,
+            cityName,
             units: "metric",
           })
           .then((weather) => {
@@ -40,6 +40,10 @@ function App() {
             // Network Error
             // Request failed with status code 404
           });
+      else {
+        setLoading(false);
+        setError(null);
+      }
     }, 500)
   ).current;
 
@@ -60,15 +64,7 @@ function App() {
       }
     >
       <main>
-        <div className="search-box">
-          <input
-            onChange={handleChange}
-            value={cityName}
-            type="text"
-            className="search-bar"
-            placeholder="Search..."
-          />
-        </div>
+        <SearchBar handleChange={handleChange} />
         {weather && (
           <Weather weather={weather} date={new Date().toLocaleString()} />
         )}
