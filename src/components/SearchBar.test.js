@@ -1,28 +1,39 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SearchBar from "./SearchBar";
 
-it("renders searchbar", () => {
-  const handler = jest.fn();
-  render(<SearchBar handleChange={handler} />);
-  const searchBarInput = screen.getByRole("textbox");
-  expect(searchBarInput).toBeInTheDocument();
-  expect(searchBarInput.value).toBe("");
+let handleChange;
+let input;
+beforeEach(() => {
+  handleChange = jest.fn();
+  render(<SearchBar handleChange={handleChange} />);
+  input = screen.getByRole("textbox");
+});
 
-  fireEvent.change(searchBarInput, {
+it("text should be empty by default", () => {
+  expect(input.value).toBe("");
+});
+
+it("should fire handleChange when text changes", () => {
+  fireEvent.change(input, {
     target: {
       value: "Paris",
     },
   });
-  expect(searchBarInput).toHaveValue("Paris");
 
-  fireEvent.change(searchBarInput, {
+  fireEvent.change(input, {
     target: {
       value: "",
     },
   });
-  expect(searchBarInput).toHaveValue("");
 
-  expect(handler).toBeCalledTimes(2);
-  expect(handler.mock.calls[0][0]).toBe("Paris");
-  expect(handler.mock.calls[1][0]).toBe("");
+  fireEvent.change(input, {
+    target: {
+      value: "Tunis",
+    },
+  });
+
+  expect(handleChange).toBeCalledTimes(3);
+  expect(handleChange.mock.calls[0][0]).toBe("Paris");
+  expect(handleChange.mock.calls[1][0]).toBe("");
+  expect(handleChange.mock.calls[2][0]).toBe("Tunis");
 });
