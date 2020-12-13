@@ -4,13 +4,29 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "montseratt", sans-serif;
+}
+
+.app {
+  background-image: url("./assets/cold-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease;
+}
+
+.app.warm {
+  background-image: url("./assets/warm-bg.jpg");
+}
+
 main {
   min-height: 100vh;
   background-image: linear-gradient(
     to bottom,
-    rgba(32, 211, 243, 0.2),
+    rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0.75)
   );
+
   padding: 25px;
 }
 
@@ -22,7 +38,7 @@ main {
 .search-box .search-bar {
   display: block;
   width: 100%;
-  padding: 25px;
+  padding: 15px;
 
   appearance: none;
   background: none;
@@ -45,46 +61,14 @@ main {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.location-box .location{
-    color: #FFF;
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
+.loading {
+  margin: 0 auto;
 }
 
-.location-box .date{
-    color: #FFF;
-    font-size: 20px;
-    font-weight: 500;
-    font-style: italic;
-    text-align: center;
-    text-shadow: 1px 1px rgba(50, 50, 70, 0.5);    
-}
-
-.weather-box {
-    text-align: center;
-}
-
-.weather-box .temp{
-    position: relative;
-    display: inline-block;
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 15px 25px;
-    color: white;
-    font-size: 102px;
-    font-weight: 900;
-
-    text-shadow: 1px 2px rgba(50, 50, 70, 0.5);
-    text-align: center;
-    box-shadow: 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.weather-box .weather{
-    color: white;
-    font-size: 48px;
-    font-weight: 700;
-    text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
+.error-box .error {
+  color: whitesmoke;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
 }

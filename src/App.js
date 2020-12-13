@@ -1,18 +1,22 @@
 import { useRef, useState } from "react";
-
+import ReactLoading from "react-loading";
 import { debounce } from "lodash";
-
-import "./App.css";
 import { createWeatherAPI } from "openweatherapi-js-sdk";
+import Weather from "./components/Weather";
 
 const api = createWeatherAPI("69cac80f1588f11748c177dbbdbb44dc");
 
 function App() {
   const [weather, setWeather] = useState();
   const [cityName, setCityName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setCityName(e.target.value);
+    setLoading(true);
+    setError(null);
+    setWeather(null);
     debounceSearch(e.target.value);
   };
 
@@ -24,16 +28,37 @@ function App() {
             cityName: cityName,
             units: "metric",
           })
-          .then((weather) => setWeather(weather))
+          .then((weather) => {
+            setWeather(weather);
+            setLoading(false);
+            setError(null);
+          })
           .catch((error) => {
-            setWeather(null);
-            console.error(error);
+            setLoading(false);
+            setError(error.message);
+            // Possible Errors
+            // Network Error
+            // Request failed with status code 404
           });
     }, 500)
   ).current;
 
+  const renderErrorMessage = () => {
+    if (error === "Request failed with status code 404") {
+      return "City not found :(";
+    }
+    if (error === "Network Error") {
+      return "Check your internet connection";
+    }
+    return "Something wrong is heppening :(";
+  };
+
   return (
-    <div className="app">
+    <div
+      className={
+        weather ? (weather.main.temp > 16 ? "app warm" : "app") : "app"
+      }
+    >
       <main>
         <div className="search-box">
           <input
@@ -44,21 +69,24 @@ function App() {
             placeholder="Search..."
           />
         </div>
-        {weather ? (
-          <div>
-            <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
-              <div className="date">{new Date().toLocaleString()}</div>
-            </div>
-            <div className="weather-box">
-              <div className="temp">{weather.main.temp}°c</div>
-              <div className="weather">{weather.weather[0].main}</div>
-            </div>
+        {weather && (
+          <Weather weather={weather} date={new Date().toLocaleString()} />
+        )}
+
+        {loading && (
+          <ReactLoading
+            className="loading"
+            type="spinningBubbles"
+            color="#ffffff"
+            height={"10%"}
+            width={"10%"}
+          />
+        )}
+
+        {error && (
+          <div className="error-box">
+            <div className="error">{renderErrorMessage()}</div>
           </div>
-        ) : (
-          ""
         )}
       </main>
     </div>
