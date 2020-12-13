@@ -15,6 +15,14 @@ it("renders searchbar", () => {
   });
   expect(searchBarInput).toHaveValue("Paris");
 
-  expect(handler).toBeCalledTimes(1);
-  expect(handler).toBeCalledWith("Paris");
+  fireEvent.change(searchBarInput, {
+    target: {
+      value: "",
+    },
+  });
+  expect(searchBarInput).toHaveValue("");
+
+  expect(handler).toBeCalledTimes(2);
+  expect(handler.mock.calls[0][0]).toBe("Paris");
+  expect(handler.mock.calls[1][0]).toBe("");
 });
