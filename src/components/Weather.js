@@ -1,6 +1,8 @@
-import './Weather.css'
+import PropTypes from "prop-types";
 
-function Weather({ weather,date }) {
+import "./Weather.css";
+
+function Weather({ weather, date }) {
   return (
     <div>
       <div className="location-box">
@@ -22,5 +24,10 @@ function Weather({ weather,date }) {
     </div>
   );
 }
+
+Weather.propTypes = {
+  weather: PropTypes.object,
+  date: PropTypes.string,
+};
 
 export default Weather;
