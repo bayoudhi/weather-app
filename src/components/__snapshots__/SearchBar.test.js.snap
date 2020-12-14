@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should fire handleChange when text changes 1`] = `
+<input
+  class="search-bar"
+  placeholder="Search..."
+  type="text"
+/>
+`;

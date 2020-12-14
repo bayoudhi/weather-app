@@ -1,6 +1,11 @@
-import PropTypes from "prop-types";
+import * as React from "react";
 import "./SearchBar.css";
 
+/**
+ * SearchBar Component
+ * @param {Object} Props
+ * @param {Function} Props.handleChange
+ */
 function SearchBar({ handleChange }) {
   return (
     <div className="search-box">
@@ -13,9 +18,5 @@ function SearchBar({ handleChange }) {
     </div>
   );
 }
-
-SearchBar.propTypes = {
-  handleChange: PropTypes.func,
-};
 
 export default SearchBar;

@@ -1,6 +1,12 @@
-import PropTypes from "prop-types";
-
+import * as React from "react";
 import "./Weather.css";
+
+/**
+ * Weather Component
+ * @param {Object} Props
+ * @param {Weather} Props.weather
+ * @param {string} Props.date
+ */
 
 function Weather({ weather, date }) {
   return (
@@ -15,19 +21,9 @@ function Weather({ weather, date }) {
         <div className="temp">{weather.main.temp}°c</div>
 
         <div className="weather">{weather.weather[0].main}</div>
-        {/* <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-              width="50px"
-              height="50px"
-            /> */}
       </div>
     </div>
   );
 }
-
-Weather.propTypes = {
-  weather: PropTypes.object,
-  date: PropTypes.string,
-};
 
 export default Weather;

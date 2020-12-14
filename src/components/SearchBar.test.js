@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import * as React from "react";
 import SearchBar from "./SearchBar";
 
 let handleChange;
@@ -13,7 +14,7 @@ it("text should be empty by default", () => {
   expect(input.value).toBe("");
 });
 
-it("should fire handleChange when text changes", () => {
+it("should call handleChange 3 times, when text changes 3 times", () => {
   fireEvent.change(input, {
     target: {
       value: "Paris",

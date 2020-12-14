@@ -4,11 +4,12 @@ import { debounce } from "lodash";
 import { createWeatherAPI } from "openweatherapi-js-sdk";
 import Weather from "./components/Weather";
 import SearchBar from "./components/SearchBar";
+import * as React from "react";
 
 const api = createWeatherAPI("69cac80f1588f11748c177dbbdbb44dc");
 
 function App() {
-  const [weather, setWeather] = useState();
+  const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
