@@ -2,12 +2,11 @@ import * as React from "react";
 import "./Weather.css";
 
 /**
- * Weather Component
+ *
  * @param {Object} Props
  * @param {Weather} Props.weather
  * @param {string} Props.date
  */
-
 function Weather({ weather, date }) {
   return (
     <div>

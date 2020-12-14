@@ -1,11 +1,12 @@
-import React from "react";
+import * as React from "react";
 
 import Weather from "../components/Weather";
 
-export default {
+const story = {
   title: "Example/Weather",
   component: Weather,
 };
+export default story;
 
 const weather1 = {
   name: "Paris",
@@ -27,5 +28,5 @@ const Template = (args) => <Weather {...args} />;
 export const Example1 = Template.bind({});
 Example1.args = {
   weather: weather1,
-  date:'01/12/2020'
+  date: "01/12/2020",
 };

@@ -5,6 +5,7 @@
  * @property {Object} sys
  * @property {string} sys.country
  * @property {Object} main
+ * @property {number} main.temp
  * @property {array} weather
  */
 

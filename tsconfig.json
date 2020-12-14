@@ -1,5 +1,4 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
     "jsx": "react",
     "module": "commonjs",
@@ -7,7 +6,9 @@
     "sourceMap": true,
     "allowJs": true,
     "checkJs": true,
-    "outDir": "build"
+    "outDir": "build-ts",
+    "noEmit": true
   },
+  "include": ["./src/**/*"],
   "exclude": ["node_modules"]
 }
