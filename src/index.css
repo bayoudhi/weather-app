@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "montseratt", sans-serif;
+}
+
+.app {
+  background-image: url("./assets/cold-bg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease;
+}
+
+.app.warm {
+  background-image: url("./assets/warm-bg.jpg");
+}
+
+main {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.75)
+  );
+
+  padding: 25px;
+}
+
+.loading {
+  margin: 0 auto;
+}
+
+.error-box .error {
+  color: whitesmoke;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
+}
