@@ -2,9 +2,8 @@
  * @typedef Weather
  * @type {Object}
  * @property {string} name
- * @property {Object} sys
- * @property {string} sys.country
  * @property {Object} main
+ * @property {Object} sys
  * @property {number} main.temp
  * @property {array} weather
  */
